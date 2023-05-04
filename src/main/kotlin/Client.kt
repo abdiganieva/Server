@@ -11,7 +11,7 @@ import java.net.Socket
  * @property sender creates message sender to server
  * @property receiver creates message receiver from server
  */
-class Client() {
+class Client() : AutoCloseable {
     private lateinit var socket: Socket
     private lateinit var sender: PrintWriter
     private lateinit var receiver: DataInputStream
@@ -32,7 +32,7 @@ class Client() {
     /**
      * Closes connection to the server
      */
-    fun endConnection() {
+    override fun close() {
         socket.close()
         receiver.close()
         sender.close()
