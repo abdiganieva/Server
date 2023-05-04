@@ -3,8 +3,8 @@ import java.net.ConnectException
 
 fun main() {
     try {
-        Client().use {
-            it.connect("npm.mipt.ru", 9048)
+        Client("npm.mipt.ru", 9048).use {
+            println("Successful connection")
             it.receiveHello()
             it.sendMessage("""HELLO\n""")
             val msgSum = it.receiveRes().sum()
